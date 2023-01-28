@@ -1,38 +1,113 @@
-.App {
-  text-align: center;
+* {
+  padding: 0;
+  margin: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+body {
+  background-color: rgb(12, 12, 12);
+}
+h2 {
+  font-style: initial;
+  color: rgb(238, 167, 13);
+}
+header {
+  padding: 15px;
+  background-color: rgb(238, 167, 13); /* dark gray background color */
+}
+nav {
+  display: flex; /* display the nav as a flex container */
+  justify-content: space-between; /* align the items to the left and right of the container */
+}
+nav ul {
+  list-style: none; /* remove the bullet points from the list */
+  margin: 30; /* remove the default margin */
+  padding: 0; /* remove the default padding */
+  display: flex; /* display the list items as a flex container */
+}
+nav li {
+  margin: 0 20px; /* add a margin of 20px between each list item */
+}
+nav a {
+  color: #fff; /* white text color */
+  text-decoration: none; /* remove the underline from the links */
+  padding: 10px; /* add a padding of 10px to the links */
+  transition: background-color 0.2s ease; /* add a transition to the background color when the links are hovered over */
+}
+nav a:hover {
+  background-color: rgb(
+    12,
+    12,
+    12
+  ); /* light gray background color when the links are hovered over */
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+th,
+td {
+  border: 1px solid #dddddd;
+  padding: 8px;
+  text-align: left;
+  font-size: 18px;
+}
+
+th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+  padding: 12px;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+tr:hover {
+  background-color: #e5e5e5;
+  cursor: pointer;
+}
+
+/* Responsive Table */
+@media only screen and (max-width: 600px) {
+  th {
+    font-size: 14px;
+  }
+  td {
+    font-size: 14px;
+  }
+  table {
+    width: 95%;
   }
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.dropdown {
+  position: relative;
 }
 
-.App-link {
-  color: #61dafb;
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown a i {
+  font-size: 12;
 }
