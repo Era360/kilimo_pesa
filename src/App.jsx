@@ -5,16 +5,18 @@ import AppLayout from "./components/applayout";
 import HomePage from "./components/routes";
 import Login from "./components/routes/login";
 import SignUp from "./components/routes/signup";
-import "./App.css";
 import { ProvideAuth } from "./components/utils/use-auth";
+import "./App.css";
+import UserProfile from "./components/routes/profile";
 
 function App() {
   return (
     <ProvideAuth>
       <Routes>
-        <Route path="/" element={<AppLayout />}>
-          <Route index element={<HomePage />} />
-        </Route>
+        <Route index element={<HomePage />} />
+        {/* <Route path="/" element={<AppLayout />}>
+        </Route> */}
+        <Route path="/profile" element={<UserProfile />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
       </Routes>
