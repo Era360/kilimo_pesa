@@ -199,11 +199,14 @@ function HomePage() {
           </header>
           <section className="flex">
             <div>
-              <h3 className="font-bold text-2xl">Recent posts</h3>
+              <h3 className="font-bold text-2xl my-2">Recent posts</h3>
               <div className="grid grid-cols-1 gap-y-5 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8 my-2">
                 {recent?.map((product) => (
                   <div key={product.id} className="#">
-                    <div className="w-3/4 overflow-hidden rounded-lg bg-gray-200 xl:aspect-w-7 xl:aspect-h-8">
+                    <div
+                      onClick={() => navigate(`/product/${product.id}`)}
+                      className="w-3/4 overflow-hidden rounded-lg bg-gray-200 xl:aspect-w-7 xl:aspect-h-8"
+                    >
                       <img
                         src={product.imageSrc}
                         alt={product.imageAlt}
@@ -219,9 +222,12 @@ function HomePage() {
               </div>
             </div>
             <div>
-              <h3 className="font-bold text-2xl">Feed</h3>
-              <div className="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8 my-2">
-                {products?.map((product) => (
+              <div className="flex items-center justify-between">
+                <h3 className="font-bold text-2xl my-2">Feed</h3>
+                <p className="hover:underline cursor-pointer">See all</p>
+              </div>
+              <div className="grid grid-cols-1 gap-y-5 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8 my-2">
+                {products.slice(0, 6)?.map((product) => (
                   <div key={product.id} className="group">
                     <div className="w-3/4 overflow-hidden rounded-lg bg-gray-200 xl:aspect-w-7 xl:aspect-h-8">
                       <img
@@ -230,14 +236,47 @@ function HomePage() {
                         className="h-full w-full object-cover object-center group-hover:opacity-75"
                       />
                     </div>
-                    <h3 className="mt-4 text-sm text-gray-700">
-                      {product.name}
-                    </h3>
-                    <p className="mt-1 text-lg font-medium text-gray-900">
+                    <p className="text-lg font-medium text-gray-900">
                       {product.price}
                     </p>
+                    <h3 className="text-sm text-gray-700">{product.name}</h3>
                   </div>
                 ))}
+              </div>
+
+              {/* Mothly best seller */}
+              <h3 className="font-bold text-2xl">Monthly Best Sellers</h3>
+              <div className="grid grid-cols-1 gap-y-5 gap-x-6 sm:grid-cols-2 xl:gap-x-4 my-2">
+                <div className="#">
+                  <div className="overflow-hidden rounded-lg bg-gray-200 xl:aspect-w-7 xl:aspect-h-8">
+                    <img
+                      src="https://picsum.photos/1000"
+                      alt="something"
+                      className="h-full w-full object-cover object-center group-hover:opacity-75"
+                    />
+                  </div>
+                  <p className="text-lg font-medium text-gray-900">
+                    {/* {product.price} */}
+                  </p>
+                  <h3 className="text-xl text-center text-gray-700 font-medium">
+                    Esther John
+                  </h3>
+                </div>
+                <div className="#">
+                  <div className="overflow-hidden rounded-lg bg-gray-200 xl:aspect-w-7 xl:aspect-h-8">
+                    <img
+                      src="https://picsum.photos/1000"
+                      alt="something"
+                      className="h-full w-full object-cover object-center group-hover:opacity-75"
+                    />
+                  </div>
+                  <p className="text-lg font-medium text-gray-900">
+                    {/* {product.price} */}
+                  </p>
+                  <h3 className="text-xl text-center text-gray-700 font-medium">
+                    Esther John
+                  </h3>
+                </div>
               </div>
             </div>
           </section>
