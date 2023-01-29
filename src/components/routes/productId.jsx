@@ -117,18 +117,18 @@ function Product() {
       },
     ];
 
-    if (!mkulima) {
-      getDoc(doc(db, "users", `${auth.currentUser?.uid}`))
-        .then((docSnapshot) => {
-          setmkulima(docSnapshot.data());
-        })
-        .catch((error) => console.log(error.message));
-    }
-
     if (!the_product) {
       setthe_product(data.find((item) => item.id === parseInt(productId)));
     }
   }, [auth.currentUser?.uid, mkulima, productId, the_product]);
+
+  const getFarmerData = () => {
+    getDoc(doc(db, "users", `${auth.currentUser?.uid}`))
+      .then((docSnapshot) => {
+        setmkulima(docSnapshot.data());
+      })
+      .catch((error) => console.log(error.message));
+  };
 
   return (
     <div className="pt-6">
@@ -286,8 +286,14 @@ function Product() {
               <div className="mt-6">
                 {/* <i class="fa-solid fa-phone"></i> */}
                 <div className="w-full rounded-md border border-transparent bg-Emerald-600 py-3 px-8 text-base text-center font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
-                  <i className="fa-solid fa-phone"></i>
-                  <span className="ml-5">{mkulima?.mobile_number}</span>
+                  {mkulima?.mobile_number ? (
+                    <span className="ml-5">{mkulima?.mobile_number}</span>
+                  ) : (
+                    <i
+                      onClick={() => getFarmerData()}
+                      className="fa-solid fa-phone cursor-pointer"
+                    ></i>
+                  )}
                 </div>
               </div>
             </div>

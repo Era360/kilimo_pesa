@@ -1,5 +1,5 @@
 import { doc, setDoc } from "firebase/firestore";
-import { connectFunctionsEmulator, httpsCallable } from "firebase/functions";
+import { httpsCallable } from "firebase/functions";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { db, functions } from "../../firebase";
@@ -21,12 +21,12 @@ function SignUp() {
     // e.target.reset();
 
     if (!data.get("mobile_number").includes("+255")) {
-      seterror("Mobile number format not supported");
+      seterror("Mobile number format not supported, start with +255");
       return;
     } else {
       seterror("");
     }
-    connectFunctionsEmulator(functions, "localhost", 5001);
+
     const createUser = httpsCallable(functions, "createUser");
     setcreating(true);
     createUser({
