@@ -18,7 +18,7 @@ function HomePage() {
           id: 1,
           name: "Mchele",
           href: "#",
-          price: "$48",
+          price: "1 KG 2000 tshs",
           imageSrc:
             "https://images.unsplash.com/photo-1523741543316-beb7fc7023d8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8YWdyaWN1bHR1cmV8ZW58MHx8MHx8&auto=format&fit=crop&w=1100&q=60",
           imageAlt:
@@ -28,7 +28,7 @@ function HomePage() {
           id: 2,
           name: "Nyanya",
           href: "#",
-          price: "$35",
+          price: "@200 tshs",
           imageSrc:
             "https://images.unsplash.com/photo-1509963906410-fceef97f22f8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8OHw3ODE2Njg4MHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=1100&q=60",
           imageAlt:
@@ -38,7 +38,7 @@ function HomePage() {
           id: 3,
           name: "Strawberry",
           href: "#",
-          price: "$89",
+          price: "@1000 tshs",
           imageSrc:
             "https://images.unsplash.com/photo-1582472138480-e84227671cd4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80",
           imageAlt:
@@ -46,37 +46,41 @@ function HomePage() {
         },
         {
           id: 4,
-          name: "Machined Mechanical Pencil",
+          name: "Kiwi",
           href: "#",
-          price: "$35",
-          imageSrc: "https://picsum.photos/1000",
+          price: "@400 tshs",
+          imageSrc:
+            "https://images.pexels.com/photos/13685360/pexels-photo-13685360.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
           imageAlt:
             "Hand holding black machined steel mechanical pencil with brass tip and top.",
         },
         {
           id: 5,
-          name: "Earthen Bottle",
+          name: "Matango na nyanya",
           href: "#",
-          price: "$48",
-          imageSrc: "https://picsum.photos/1000",
+          price: "@500 tshs",
+          imageSrc:
+            "https://images.pexels.com/photos/1656664/pexels-photo-1656664.jpeg?auto=compress&cs=tinysrgb&w=1200&lazy=load",
           imageAlt:
             "Tall slender porcelain bottle with natural clay textured body and cork stopper.",
         },
         {
           id: 6,
-          name: "Nomad Tumbler",
+          name: "Mchanganyiko",
           href: "#",
-          price: "$35",
-          imageSrc: "https://picsum.photos/1000",
+          price: "@100 tshs",
+          imageSrc:
+            "https://images.pexels.com/photos/3714083/pexels-photo-3714083.png?auto=compress&cs=tinysrgb&w=1200&lazy=load",
           imageAlt:
             "Olive drab green insulated bottle with flared screw lid and flat top.",
         },
         {
           id: 7,
-          name: "Focus Paper Refill",
+          name: "Mchele",
           href: "#",
-          price: "$89",
-          imageSrc: "https://picsum.photos/1000",
+          price: "1kg 3200 tshs",
+          imageSrc:
+            "https://images.pexels.com/photos/1058401/pexels-photo-1058401.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
           imageAlt:
             "Person using a pen to cross a task off a productivity paper card.",
         },

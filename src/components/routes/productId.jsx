@@ -1,9 +1,135 @@
-import React from "react";
+import { getAuth } from "firebase/auth";
+import { doc, getDoc } from "firebase/firestore";
+import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { db } from "../../firebase";
 
 function Product() {
   const navigate = useNavigate();
   const { productId } = useParams();
+  const [the_product, setthe_product] = useState();
+  const [mkulima, setmkulima] = useState();
+  const auth = getAuth();
+
+  useEffect(() => {
+    let data = [
+      {
+        id: 1,
+        name: "Mchele",
+        href: "#",
+        price: "$48",
+        imageSrc:
+          "https://images.unsplash.com/photo-1523741543316-beb7fc7023d8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8YWdyaWN1bHR1cmV8ZW58MHx8MHx8&auto=format&fit=crop&w=1100&q=60",
+        imageAlt:
+          "Tall slender porcelain bottle with natural clay textured body and cork stopper.",
+      },
+      {
+        id: 2,
+        name: "Nyanya",
+        href: "#",
+        price: "$35",
+        imageSrc:
+          "https://images.unsplash.com/photo-1509963906410-fceef97f22f8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8OHw3ODE2Njg4MHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=1100&q=60",
+        imageAlt:
+          "Olive drab green insulated bottle with flared screw lid and flat top.",
+      },
+      {
+        id: 3,
+        name: "Strawberry",
+        href: "#",
+        price: "$89",
+        imageSrc:
+          "https://images.unsplash.com/photo-1582472138480-e84227671cd4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80",
+        imageAlt:
+          "Person using a pen to cross a task off a productivity paper card.",
+      },
+      {
+        id: 4,
+        name: "Machined Mechanical Pencil",
+        href: "#",
+        price: "$35",
+        imageSrc: "https://picsum.photos/1000",
+        imageAlt:
+          "Hand holding black machined steel mechanical pencil with brass tip and top.",
+      },
+      {
+        id: 5,
+        name: "Earthen Bottle",
+        href: "#",
+        price: "$48",
+        imageSrc: "https://picsum.photos/1000",
+        imageAlt:
+          "Tall slender porcelain bottle with natural clay textured body and cork stopper.",
+      },
+      {
+        id: 6,
+        name: "Nomad Tumbler",
+        href: "#",
+        price: "$35",
+        imageSrc: "https://picsum.photos/1000",
+        imageAlt:
+          "Olive drab green insulated bottle with flared screw lid and flat top.",
+      },
+      {
+        id: 7,
+        name: "Focus Paper Refill",
+        href: "#",
+        price: "$89",
+        imageSrc: "https://picsum.photos/1000",
+        imageAlt:
+          "Person using a pen to cross a task off a productivity paper card.",
+      },
+      {
+        id: 8,
+        name: "Machined Mechanical Pencil",
+        href: "#",
+        price: "$35",
+        imageSrc: "https://picsum.photos/1000",
+        imageAlt:
+          "Hand holding black machined steel mechanical pencil with brass tip and top.",
+      },
+      {
+        id: 9,
+        name: "Nomad Tumbler",
+        href: "#",
+        price: "$35",
+        imageSrc: "https://picsum.photos/1000",
+        imageAlt:
+          "Olive drab green insulated bottle with flared screw lid and flat top.",
+      },
+      {
+        id: 10,
+        name: "Focus Paper Refill",
+        href: "#",
+        price: "$89",
+        imageSrc: "https://picsum.photos/1000",
+        imageAlt:
+          "Person using a pen to cross a task off a productivity paper card.",
+      },
+      {
+        id: 11,
+        name: "Machined Mechanical Pencil",
+        href: "#",
+        price: "$35",
+        imageSrc: "https://picsum.photos/1000",
+        imageAlt:
+          "Hand holding black machined steel mechanical pencil with brass tip and top.",
+      },
+    ];
+
+    if (!mkulima) {
+      getDoc(doc(db, "users", `${auth.currentUser?.uid}`))
+        .then((docSnapshot) => {
+          setmkulima(docSnapshot.data());
+        })
+        .catch((error) => console.log(error.message));
+    }
+
+    if (!the_product) {
+      setthe_product(data.find((item) => item.id === parseInt(productId)));
+    }
+  }, [auth.currentUser?.uid, mkulima, productId, the_product]);
+
   return (
     <div className="pt-6">
       <nav aria-label="Breadcrumb">
@@ -37,178 +163,137 @@ function Product() {
           </li>
         </ol>
       </nav>
-
-      <div className="mx-auto border mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-md ">
-        <div className="w-full rounded-lg lg:block">
-          <img
-            src="https://tailwindui.com/img/ecommerce-images/product-page-02-secondary-product-shot.jpg"
-            alt="Two each of gray, white, and black shirts laying flat."
-            className="h-full w-full object-cover object-center"
-          />
-        </div>
-      </div>
-
-      <div className="mx-auto max-w-2xl px-4 pt-10 pb-16 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8 lg:px-8 lg:pt-16 lg:pb-24">
-        <div className="lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
-          <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
-            Basic Tee 6-Pack
-          </h1>
-        </div>
-
-        <div className="mt-4 lg:row-span-3 lg:mt-0">
-          <h2 className="sr-only">Product information</h2>
-          <p className="text-3xl tracking-tight text-gray-900">$192</p>
-
-          <div className="mt-6">
-            <h3 className="sr-only">Reviews</h3>
-            <div className="flex items-center">
-              <div className="flex items-center">
-                <svg
-                  className="text-gray-900 h-5 w-5 flex-shrink-0"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                  aria-hidden="true"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"
-                    clip-rule="evenodd"
-                  />
-                </svg>
-
-                <svg
-                  className="text-gray-900 h-5 w-5 flex-shrink-0"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                  aria-hidden="true"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"
-                    clip-rule="evenodd"
-                  />
-                </svg>
-
-                <svg
-                  className="text-gray-900 h-5 w-5 flex-shrink-0"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                  aria-hidden="true"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"
-                    clip-rule="evenodd"
-                  />
-                </svg>
-
-                <svg
-                  className="text-gray-900 h-5 w-5 flex-shrink-0"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                  aria-hidden="true"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"
-                    clip-rule="evenodd"
-                  />
-                </svg>
-
-                <svg
-                  className="text-gray-200 h-5 w-5 flex-shrink-0"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                  aria-hidden="true"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"
-                    clip-rule="evenodd"
-                  />
-                </svg>
-              </div>
-              <p className="sr-only">4 out of 5 stars</p>
-              <p
-                href="#"
-                className="ml-3 text-sm font-medium text-indigo-600 hover:text-indigo-500"
-              >
-                117 reviews
-              </p>
+      {the_product && (
+        <div className="flex">
+          <div className="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-md ">
+            <div className="w-full rounded-lg lg:block">
+              <img
+                src={the_product.imageSrc}
+                // src="https://tailwindui.com/img/ecommerce-images/product-page-02-secondary-product-shot.jpg"
+                alt="Two each of gray, white, and black shirts laying flat."
+                className="h-full w-full object-cover object-center"
+              />
             </div>
           </div>
 
-          <div className="mt-10">
-            <button className="mt-10 w-full rounded-md border border-transparent bg-Emerald-600 py-3 px-8 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
-              Contact Farmer
-            </button>
-          </div>
-        </div>
-
-        <div className="py-10 lg:col-span-2 lg:col-start-1 lg:border-r lg:border-gray-200 lg:pt-6 lg:pb-16 lg:pr-8">
-          <div>
-            <h3 className="sr-only">Description</h3>
-
-            <div className="space-y-6">
-              <p className="text-base text-gray-900">
-                The Basic Tee 6-Pack allows you to fully express your vibrant
-                personality with three grayscale options. Feeling adventurous?
-                Put on a heather gray tee. Want to be a trendsetter? Try our
-                exclusive colorway: &quot;Black&quot;. Need to add an extra pop
-                of color to your outfit? Our white tee has you covered.
-              </p>
-            </div>
-          </div>
-
-          <div className="mt-10">
-            <h3 className="text-sm font-medium text-gray-900">Highlights</h3>
-
+          <div className="mx-auto max-w-2xl px-4 pt-10 pb-16 sm:px-6">
+            <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
+              {the_product.name}
+            </h1>
             <div className="mt-4">
-              <ul className="list-disc space-y-2 pl-4 text-sm">
-                <li className="text-gray-400">
-                  <span className="text-gray-600">
-                    Hand cut and sewn locally
-                  </span>
-                </li>
+              <div className="flex">
+                <h2 className="text-xl font-bold">Bei:</h2>
+                <p className="text-3xl ml-3 tracking-tight text-gray-900">
+                  {the_product.price}
+                </p>
+              </div>
 
-                <li className="text-gray-400">
-                  <span className="text-gray-600">
-                    Dyed with our proprietary colors
-                  </span>
-                </li>
+              {/* <div className="mt-6">
+                <h3 className="sr-only">Reviews</h3>
+                <div className="flex items-center">
+                  <div className="flex items-center">
+                    <svg
+                      className="text-gray-900 h-5 w-5 flex-shrink-0"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                      aria-hidden="true"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"
+                        clip-rule="evenodd"
+                      />
+                    </svg>
 
-                <li className="text-gray-400">
-                  <span className="text-gray-600">
-                    Pre-washed &amp; pre-shrunk
-                  </span>
-                </li>
+                    <svg
+                      className="text-gray-900 h-5 w-5 flex-shrink-0"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                      aria-hidden="true"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"
+                        clip-rule="evenodd"
+                      />
+                    </svg>
 
-                <li className="text-gray-400">
-                  <span className="text-gray-600">Ultra-soft 100% cotton</span>
-                </li>
-              </ul>
-            </div>
-          </div>
+                    <svg
+                      className="text-gray-900 h-5 w-5 flex-shrink-0"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                      aria-hidden="true"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"
+                        clip-rule="evenodd"
+                      />
+                    </svg>
 
-          <div className="mt-10">
-            <h2 className="text-sm font-medium text-gray-900">Details</h2>
+                    <svg
+                      className="text-gray-900 h-5 w-5 flex-shrink-0"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                      aria-hidden="true"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"
+                        clip-rule="evenodd"
+                      />
+                    </svg>
 
-            <div className="mt-4 space-y-6">
-              <p className="text-sm text-gray-600">
-                The 6-Pack includes two black, two white, and two heather gray
-                Basic Tees. Sign up for our subscription service and be the
-                first to get new, exciting colors, like our upcoming
-                &quot;Charcoal Gray&quot; limited release.
-              </p>
+                    <svg
+                      className="text-gray-200 h-5 w-5 flex-shrink-0"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                      aria-hidden="true"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"
+                        clip-rule="evenodd"
+                      />
+                    </svg>
+                  </div>
+                  <p className="sr-only">4 out of 5 stars</p>
+                  <p
+                    href="#"
+                    className="ml-3 text-sm font-medium text-indigo-600 hover:text-indigo-500"
+                  >
+                    117 reviews
+                  </p>
+                </div>
+              </div> */}
+              <div className="py-10">
+                <div>
+                  <h3 className="text-xl font-bold">Kuhusu bidhaa</h3>
+
+                  <div className="#">
+                    <p className="text-base text-gray-900">
+                      {the_product.imageAlt}
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-6">
+                {/* <i class="fa-solid fa-phone"></i> */}
+                <div className="w-full rounded-md border border-transparent bg-Emerald-600 py-3 px-8 text-base text-center font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                  <i className="fa-solid fa-phone"></i>
+                  <span className="ml-5">{mkulima?.mobile_number}</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }
