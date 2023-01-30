@@ -1,8 +1,9 @@
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
-import { httpsCallable } from "firebase/functions";
+import { connectFunctionsEmulator, httpsCallable } from "firebase/functions";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { db, functions } from "../../firebase";
+import { auth, db, functions } from "../../firebase";
 
 function SignUp() {
   const [creating, setcreating] = useState(false);
@@ -27,20 +28,20 @@ function SignUp() {
       seterror("");
     }
 
-    const createUser = httpsCallable(functions, "createUser");
-    setcreating(true);
-    createUser({
-      email: data.get("email"),
-      password: data.get("password"),
-      mobile_number: data.get("mobile_number"),
-    })
-      .then(async ({ data: user }) => {
+    // connectFunctionsEmulator(functions, "localhost", 5001);
+    createUserWithEmailAndPassword(
+      auth,
+      data.get("email"),
+      data.get("password")
+    )
+      .then(async (userCredential) => {
+        const user = userCredential.user;
         let userData = {
           name: data.get("name"),
           role: data.get("rolee"),
           mobile_number: data.get("mobile_number"),
         };
-        await setDoc(doc(db, "users", user.uid), userData);
+        await setDoc(doc(db, "users", user?.uid), userData);
         setcreating(false);
         setsuccess(!success);
       })
@@ -49,6 +50,14 @@ function SignUp() {
         setcreating(false);
         seterror(err.message);
       });
+
+    const createUser = httpsCallable(functions, "createUser");
+    setcreating(true);
+    createUser({
+      email: data.get("email"),
+      password: data.get("password"),
+      mobile_number: data.get("mobile_number"),
+    });
   }
 
   return (

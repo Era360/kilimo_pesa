@@ -15,6 +15,30 @@ const AfricasTalking = require("africastalking")(credentials);
 //   response.send("Hello from Firebase!");
 // });
 
+exports.airtime = functions.https.onCall((data) => {
+  // Get the SMS service
+
+  const airtime = AfricasTalking.AIRTIME;
+  console.log(data["mobile_number"]);
+
+  const options = {
+    recipients: [{
+      phoneNumber: `${data["mobile_number"]}`,
+      currencyCode: "TZS",
+      amount: 50,
+    }],
+  };
+
+  airtime.send(options)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+});
+
+
 exports.createUser = functions.https.onCall((data) => {
   // Get the SMS service
   const sms = AfricasTalking.SMS;
@@ -25,9 +49,10 @@ exports.createUser = functions.https.onCall((data) => {
       // Set the numbers you want to send to in international format
       to: `${data["mobile_number"]}`,
       // Set your message
-      message: "Karibu sana Kilimo Pesa",
+      // eslint-disable-next-line max-len
+      message: "Karibu sana Kilimo Pesa, Sasa unaweza kuuza na kununua mazao kirahisi",
       // Set your shortCode or senderId
-    //   from: "Kilimo Pesa",
+      //   from: "Kilimo Pesa",
     };
 
     // That’s it, hit send and we’ll take care of the rest

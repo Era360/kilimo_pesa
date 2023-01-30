@@ -1,13 +1,13 @@
 import { getAuth, signOut } from "firebase/auth";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { useRequireAuth } from "../utils/hooks";
 
 function HomePage() {
   const [products, setproducts] = useState([]);
   const [recent, setrecent] = useState([]);
   const [logout_menu, setlogout_menu] = useState(false);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const auth = useRequireAuth("/login");
   const the_auth = getAuth();
 
@@ -51,8 +51,7 @@ function HomePage() {
           price: "@400 tshs",
           imageSrc:
             "https://images.pexels.com/photos/13685360/pexels-photo-13685360.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-          imageAlt:
-            "Hand holding black machined steel mechanical pencil with brass tip and top.",
+          imageAlt: "Matanda matamu sana haya, onja utaona",
         },
         {
           id: 5,
@@ -61,8 +60,7 @@ function HomePage() {
           price: "@500 tshs",
           imageSrc:
             "https://images.pexels.com/photos/1656664/pexels-photo-1656664.jpeg?auto=compress&cs=tinysrgb&w=1200&lazy=load",
-          imageAlt:
-            "Tall slender porcelain bottle with natural clay textured body and cork stopper.",
+          imageAlt: "Nina mazao mengi mchanganyiko, na yalioota vizuri",
         },
         {
           id: 6,
@@ -81,46 +79,35 @@ function HomePage() {
           price: "1kg 3200 tshs",
           imageSrc:
             "https://images.pexels.com/photos/1058401/pexels-photo-1058401.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-          imageAlt:
-            "Person using a pen to cross a task off a productivity paper card.",
+          imageAlt: "Mchele mzuri.",
         },
         {
           id: 8,
-          name: "Machined Mechanical Pencil",
+          name: "njegere",
           href: "#",
-          price: "$35",
-          imageSrc: "https://picsum.photos/1000",
-          imageAlt:
-            "Hand holding black machined steel mechanical pencil with brass tip and top.",
+          price: "3500 tshs",
+          imageSrc:
+            "https://images.pexels.com/photos/3004798/pexels-photo-3004798.jpeg?auto=compress&cs=tinysrgb&w=600",
+          imageAlt: "Njegere nzuri na tamu sana. Nunua utanishukuru badae",
         },
         {
           id: 9,
-          name: "Nomad Tumbler",
+          name: "Nyanya",
           href: "#",
-          price: "$35",
-          imageSrc: "https://picsum.photos/1000",
-          imageAlt:
-            "Olive drab green insulated bottle with flared screw lid and flat top.",
+          price: "350 tshs",
+          imageSrc:
+            "https://images.pexels.com/photos/2817549/pexels-photo-2817549.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+          imageAlt: "Nyanya nene na zimeiva vizuri mno, karibu sana",
         },
         {
           id: 10,
-          name: "Focus Paper Refill",
+          name: "Pilipili",
           href: "#",
-          price: "$89",
-          imageSrc: "https://picsum.photos/1000",
-          imageAlt:
-            "Person using a pen to cross a task off a productivity paper card.",
+          price: "200 tshs",
+          imageSrc:
+            "https://images.pexels.com/photos/1838596/pexels-photo-1838596.jpeg?auto=compress&cs=tinysrgb&w=600",
+          imageAlt: "pilipili tamu sana na murua.",
         },
-        {
-          id: 11,
-          name: "Machined Mechanical Pencil",
-          href: "#",
-          price: "$35",
-          imageSrc: "https://picsum.photos/1000",
-          imageAlt:
-            "Hand holding black machined steel mechanical pencil with brass tip and top.",
-        },
-        // More products...
       ]);
     }
   }, [products.length]);
@@ -278,12 +265,12 @@ function HomePage() {
             </div>
             <div className="relative overflow-hidden rounded-lg bg-gray-200 xl:aspect-w-7 xl:aspect-h-8">
               <img
-                src="https://picsum.photos/1000"
+                src="https://images.pexels.com/photos/7457020/pexels-photo-7457020.jpeg?auto=compress&cs=tinysrgb&w=600"
                 alt="something"
                 className="h-full w-full object-cover object-center group-hover:opacity-75"
               />
               <div className="absolute bottom-0 px-4 py-2 w-full bg-Emerald-800 opacity-90">
-                <h3 className="text-xl text-white font-bold">Esther John</h3>
+                <h3 className="text-xl text-white font-bold">Baraka Salim</h3>
                 <div className="flex items-center">
                   {[0, 1, 2, 3, 4].map((rating) => (
                     <i
@@ -296,12 +283,14 @@ function HomePage() {
             </div>
             <div className="relative overflow-hidden rounded-lg bg-gray-200 xl:aspect-w-7 xl:aspect-h-8">
               <img
-                src="https://picsum.photos/1000"
+                src="https://images.pexels.com/photos/11947664/pexels-photo-11947664.jpeg?auto=compress&cs=tinysrgb&w=600"
                 alt="something"
                 className="h-full w-full object-cover object-center group-hover:opacity-75"
               />
               <div className="absolute bottom-0 px-4 py-2 w-full bg-Emerald-800 opacity-90">
-                <h3 className="text-xl text-white font-bold">Esther John</h3>
+                <h3 className="text-xl text-white font-bold">
+                  Emmanueli Shayo
+                </h3>
                 <div className="flex items-center">
                   {[0, 1, 2, 3, 4].map((rating) => (
                     <i
@@ -314,30 +303,12 @@ function HomePage() {
             </div>
             <div className="relative overflow-hidden rounded-lg bg-gray-200 xl:aspect-w-7 xl:aspect-h-8">
               <img
-                src="https://picsum.photos/1000"
+                src="https://images.pexels.com/photos/1812634/pexels-photo-1812634.jpeg?auto=compress&cs=tinysrgb&w=600"
                 alt="something"
                 className="h-full w-full object-cover object-center group-hover:opacity-75"
               />
               <div className="absolute bottom-0 px-4 py-2 w-full bg-Emerald-800 opacity-90">
-                <h3 className="text-xl text-white font-bold">Esther John</h3>
-                <div className="flex items-center">
-                  {[0, 1, 2, 3, 4].map((rating) => (
-                    <i
-                      key={rating}
-                      className="fa-solid fa-star h-5 w-5 flex-shrink-0"
-                    ></i>
-                  ))}
-                </div>
-              </div>
-            </div>
-            <div className="relative overflow-hidden rounded-lg bg-gray-200 xl:aspect-w-7 xl:aspect-h-8">
-              <img
-                src="https://picsum.photos/1000"
-                alt="something"
-                className="h-full w-full object-cover object-center group-hover:opacity-75"
-              />
-              <div className="absolute bottom-0 px-4 py-2 w-full bg-Emerald-800 opacity-90">
-                <h3 className="text-xl text-white font-bold">Esther John</h3>
+                <h3 className="text-xl text-white font-bold">Salumu Sangi</h3>
                 <div className="flex items-center">
                   {[0, 1, 2, 3, 4].map((rating) => (
                     <i

@@ -170,8 +170,8 @@ function Login() {
                 <p className="text-base ">
                   Not a member yet?
                   <span
-                    onClick={() => navigate("/signup")}
-                    className="ml-2 hover:underline cursor-pointer"
+                    // onClick={() => navigate("/signup")}
+                    className="ml-2 cursor-pointer line-through "
                   >
                     Sign Up
                   </span>
